@@ -1,0 +1,25 @@
+﻿@model IEnumerable<IdentityMVC.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "GetUser";
+}
+
+<h2>GetUser</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.Email
+        </td>
+    </tr>
+}
+
+</table>

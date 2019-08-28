@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MVC.Models.Book>
+    @{
+    ViewBag.Title = "Home Page";
+}
+<div>
+    <h3>Books</h3>
+    <table>
+        <tr>
+            <td><p>Book's name</p></td>
+            <td><p>Author</p></td>
+            <td><p>Price</p></td>
+        </tr>
+        @foreach (var b in Model)
+        {
+            <tr>
+                <td><p>@b.Name</p></td>
+                <td><p>@b.Author</p></td>
+                <td><p>@b.Price</p></td>
+                <td><p><a href="/Home/Buy/@b.Id">BUY</a>"</p></td>
+            </tr>
+        }
+    </table>
+</div>

@@ -1,0 +1,30 @@
+﻿@model ASP.NET_MVC.Models.Purchase
+@{
+    ViewBag.Title = "Покупка книги";
+}
+<div>
+    <h3>Форма оформления покупки</h3>
+    @using (Html.BeginForm("Buy", "Home", FormMethod.Post))
+    {
+        @*<input type="hidden" value="@ViewBag.BookId" name="BookId" />*@
+        @*@Html.Hidden("BookId", ViewBag.BookId as string)*@
+        @*@Html.Hidden("BookId", Model.BookId)*@
+        @Html.HiddenFor(m=>m.BookId)
+        <table>
+            <tr>
+                @*<td><p>@Html.Label("Person", "Введите имя:") </p></td>*@
+                <td><p>@Html.LabelFor(m => m.Person, "Введите имя:") </p></td>
+                @*<td>@Html.TextBox("Person", Model.Person)</td>*@
+                <td>@Html.EditorFor(m => m.Person)</td>
+            </tr>
+            <tr>
+                @*<td><p>@Html.Label("Address", "Введите адрес:")</p></td>*@
+                <td><p>@Html.LabelFor(m => m.Address, "Введите адрес:")</p></td>
+                @*<td>@Html.TextBox("Address", "Введите адрес")</td>*@
+                <td>@Html.TextBoxFor(m=>m.Address)</td>
+            </tr>
+            <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+        </table>
+    }
+</div>
+

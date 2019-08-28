@@ -1,0 +1,97 @@
+﻿@using ASP.NET_MVC.Models;
+@model  IEnumerable<Book>
+@{
+    ViewBag.Title = "Книжный магазин";
+}
+<h2>@ViewData["Head"]</h2>
+<a href="/Home/Create">Создать</a>
+<div>
+    <h3>Распродажа книг</h3>
+    <ul>
+        @foreach(string s in ViewBag.Cars)
+        {
+            <li>@s</li>
+        }
+    </ul>
+    <table>
+        <tr>
+            <td><p>Название книги</p></td>
+            <td><p>Автор</p></td>
+            <td><p>Цена</p></td>
+            <td></td>
+        </tr>
+        @foreach (Book b in Model)//@foreach(var b in ViewBag.Books)
+        {
+            <tr>
+                <td><p>@b.Name</p></td>
+                <td><p>@b.Author</p></td>
+                <td><p>@b.Price</p></td>
+                <td><p><a href="/Home/Buy/@b.Id">Купить</a>  <a href="/Home/Delete/@b.Id">Удалить</a>   <a href="/Home/EditBook/@b.Id">Редактировать</a></p></td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+@helper BookList(IEnumerable<Book> books)
+{
+    <ul>
+        @foreach (Book b in books)
+        {
+            <li>@b.Name</li>
+        }
+    </ul>
+}
+<h3>Список книг</h3>
+@BookList(Model)
+
+@*@helper CreateList(string[] all)
+{
+    <ul>
+        @foreach (string s in all)
+        {
+            <li>@s</li>
+        }
+    </ul>
+}
+@{
+    string[] cities = new string[] { "Лондон", "Париж", "Москва" };
+}
+@{
+    string[] countries = new string[] { "Великобритания", "Франция", "Россия" };
+}
+<h3>Города</h3>
+@CreateList(cities)
+<br />
+<h3>Страны</h3>
+@CreateList(countries)*@
+
+@{
+    string[] cities = new string[] { "Лондон", "Париж", "Москва" };
+}
+@{
+    string[] countries = new string[] { "Великобритания", "Франция", "Россия" };
+}
+@using ASP.NET_MVC.Helpers
+@Html.CreateList(cities)
+@ListHelper.CreateList(Html,countries)
+
+@using (Html.BeginForm("GetForm", "Home", FormMethod.Post))
+{
+    @*@Html.TextArea("text", "привет мир", 5, 50, null)*@
+    
+    @*@Html.RadioButton("color", "red")
+    <span>красный</span> <br />
+    @Html.RadioButton("color", "blue")
+    <span>синий</span> <br />
+    @Html.RadioButton("color", "green", true)
+    <span>зеленый</span>*@
+    
+    @*@Html.CheckBox("set", false)<span>Switch on!</span>*@
+    
+    @*@Html.DropDownList("author",ViewBag.Authors as SelectList)*@
+    
+    @Html.ListBox("countries", new MultiSelectList(new string[] {"Франция","Англия","Чехия","Бразилия"}))
+    <input type="submit" value=" Send" />
+}
+
